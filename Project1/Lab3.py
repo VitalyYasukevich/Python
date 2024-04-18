@@ -151,20 +151,24 @@ class Car:
     # метод вывода списка автомобилей заданной марки
     @classmethod
     def printCarBrand(cls, carList, brandCar):
+        count = 0
         for i in range(len(carList)):
             if brandCar == carList[i].get_brand():
-                print(carList[i])
-            else:
-                print("Автомобилей марки " + brandCar + " нет!")
+                Car.printCarInfo(carList[i])
+                count += 1
+        if count == 0:
+            print("Автомобилей марки " + brandCar + " нет!")
 
     # метод вывода списка автомобилей заданной модели, которые эксплуатируются больше n лет
     @classmethod
     def printCarModel(cls, carList, modelCar, yearOfOperation):
+        count = 0
         for i in range(len(carList)):
-            if modelCar == carList[i].get_model() and yearOfOperation <= 2024 - yearOfOperation:
-                print(carList[i])
-            else:
-                print("Автомобилей модели " + modelCar + " находящихся в эксплуатации " + yearOfOperation + " г. - нет!")
+            if modelCar == carList[i].get_model() and yearOfOperation <= (2024 - yearOfOperation):
+                Car.printCarInfo(carList[i])
+                count += 1
+        if count == 0:
+            print("Автомобилей модели " + modelCar + " эксплуатирующихся " + str(yearOfOperation) + " г. - нет!")
 
 
 carList = []
@@ -185,39 +189,16 @@ for i in range(count):
 for i in range(len(carList)):
     Car.printCarInfo(carList[i])
 
-    # метод вывода возраста машины
-    # @classmethod
-    # def ageOfTheCar(cls, carList)
 
+print("\n*********************************************************************************************\n")
+# Вывод списка автомобилей заданной марки
+brandCar = input("Введите марку автомобиля для поиска: ")
+print(f"\nАвтомобили марки {brandCar}: ")
+Car.printCarBrand(carList, brandCar)
 
-
-    print("\n*********************************************************************************************\n")
-    # Вывод списка автомобилей заданной марки
-    brandCar = input("Введите марку автомобиля для поиска: ")
-    print(f"\nАвтомобили марки {brandCar}: ")
-    Car.printCarBrand(carList, brandCar)
-
-    print("\n*********************************************************************************************\n")
-    # Вывод списка автомобилей заданной модели, которые эксплуатируются больше n лет
-    modelCar = input("Введите модель автомобиля: ")
-    yearOfOperation = input("Сколько годиков эскплуатируете? ")
-    print(f"\nАвтомобили модели ({modelCar}), которые эксплуатировались более ({yearOfOperation}) лет.: ")
-    Car.printCarModel(carList, modelCar, yearOfOperation)
-
-
-
-
-
-
-
-        # car1 = Car(1, "Audi", "100", 2023, "Black", 45000, "3048-XK")
-        # car2 = Car(2, "BMW", "525", 2022, "Brown", 43000, "0301-KE")
-        # car3 = Car(3, "Mercedes-Benz", "S-class cabrio", 2021, "Red", 50000, "4639-HB")
-        # car4 = Car(4, "Volvo", "S90", 2024, "Blue", 55000, "2506-LO")
-        # car5 = Car(5, "Ford", "Explorer", 2021, "Silver", 35000, "5648-NY")
-
-        # car5.set_price(345253)
-        # print(car5.get_price())
-        #
-        # print(Car.car1)
-
+print("\n*********************************************************************************************\n")
+# Вывод списка автомобилей заданной модели, которые эксплуатируются больше n лет
+modelCar = input("Введите модель автомобиля: ")
+yearOfOperation = int(input("Сколько годиков эскплуатируете? "))
+print(f"\nАвтомобили модели ({modelCar}), которые эксплуатировались более ({yearOfOperation}) лет.: ")
+Car.printCarModel(carList, modelCar, yearOfOperation)
